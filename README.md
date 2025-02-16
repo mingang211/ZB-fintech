@@ -25,9 +25,11 @@
   - 계좌 생성
   - 사용자가 생성하고 보유 중인 계좌만 삭제 가능
   - 사용자가 생성하고 보유 중인 계좌에서만 금액 인출 가능
+    - 금액 인출 시 pin 비밀번호(pin-password)를 입력해야 한다.  
   - 금액 입금
 
 ### 💸송금 기능
+  - 송금 시 pin 비밀번호(pin-password)를 입력해야 한다.
   - 로그인한 사용자만 보유한 계좌에서 송금할 수 있다.
   - 잔액 부족 시 계좌 송금 불가
   - 1일 최대 이체 금액을 제한하여 한도 초과 시 계좌 송금 불가
@@ -41,7 +43,7 @@
   - 거래 내역이 많을 수 있음으로 페이징 처리
 
 ## ERD
-
+![ERD Diagram](https://github.com/mingang211/ZB-fintech/blob/main/src/ZB-fintech.drawio.png)
 
 ## Trouble Shooting
 
