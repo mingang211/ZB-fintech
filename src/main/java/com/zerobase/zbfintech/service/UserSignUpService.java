@@ -41,7 +41,7 @@ public class UserSignUpService {
         }
     }
 
-    private User signup(SignupForm form) {
+    public User signup(SignupForm form) {
         return userRepository.save(User.from(form));
     }
 
@@ -74,6 +74,7 @@ public class UserSignUpService {
                 .append(code)
                 .toString();
     }
+
     @Transactional
     public void verifyEmail(String email, String code){
         User user = userRepository.findByEmail(email).orElseThrow(
