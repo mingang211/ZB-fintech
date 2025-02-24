@@ -1,15 +1,17 @@
 package com.zerobase.zbfintech.controller;
 
 import com.zerobase.zbfintech.service.EmailService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TestEmailController {
 
-    @Autowired
-    private EmailService emailService;
+    private final EmailService emailService;
+
+    public TestEmailController(EmailService emailService) {
+        this.emailService = emailService;
+    }
 
     @PostMapping("/send-test-email")
     public String sendTestEmail() {
