@@ -4,18 +4,15 @@ import com.zerobase.zbfintech.dto.SignupForm;
 import com.zerobase.zbfintech.service.UserSignUpService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user/signup")
-public class UserController {
+@RequestMapping("/signup")
+public class UserSignUpController {
 
     private final UserSignUpService userSignUpService;
 
-    public UserController(UserSignUpService userSignUpService) {
+    public UserSignUpController(UserSignUpService userSignUpService) {
         this.userSignUpService = userSignUpService;
 
     }
@@ -23,5 +20,12 @@ public class UserController {
     @PostMapping
     public ResponseEntity<String> signUp(@RequestBody SignupForm form) {
         return ResponseEntity.ok(userSignUpService.userSignUp(form));
+    }
+
+    @Operation(summary = "회원 가입", description = "인증 메일을 받고 인증 확인")
+    @GetMapping("/verify/user")
+    public ResponseEntity<String> verifyUser(String email, String code){
+        userSignUpService.verifyEmail(email, code);
+        return ResponseEntity.ok("인증이 완료되었습니다.");
     }
 }
