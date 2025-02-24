@@ -1,4 +1,4 @@
-package com.zerobase.cms.zbfintech;
+package com.zerobase.zbfintech;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
