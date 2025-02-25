@@ -2,7 +2,6 @@ package com.zerobase.zbfintech.entity;
 
 import com.zerobase.zbfintech.dto.SignupForm;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -27,14 +26,14 @@ public class User extends BaseEntity {
 
     private LocalDateTime verifyExpiredAt;
     private String verificationCode;
-    private boolean verify;
+    private boolean is_email_verified;
 
     public static User from(SignupForm form){
         return User.builder()
                 .username(form.getUsername())
                 .email(form.getEmail().toLowerCase(Locale.ROOT))
                 .password(form.getPassword())
-                .verify(false)
+                .is_email_verified(false)
                 .build();
     }
 }

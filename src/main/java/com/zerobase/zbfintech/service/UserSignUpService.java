@@ -80,14 +80,14 @@ public class UserSignUpService {
         User user = userRepository.findByEmail(email).orElseThrow(
                 ()-> new CustomException(NOT_FOUND_USER)
         );
-        if(user.isVerify()){
+        if(user.is_email_verified()){
             throw new CustomException(ALREADY_VERIFY);
         }else if(!user.getVerificationCode().equals(code)){
             throw new CustomException(WRONG_VERIFICATION);
         }else if(user.getVerifyExpiredAt().isBefore(LocalDateTime.now())){
             throw new CustomException(EXPIRE_CODE);
         }
-        user.setVerify(true);
+        user.set_email_verified(true);
     }
 
 }
