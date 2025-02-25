@@ -97,7 +97,7 @@ class UserSignUpServiceTest {
         userSignUpService.verifyEmail(email, code);
 
         // then
-        assertTrue(user.isIs_email_verified());
+        assertTrue(user.is_email_verified());
         verify(userRepository, times(1)).findByEmail(email);
     }
 
@@ -106,7 +106,7 @@ class UserSignUpServiceTest {
         // given
         String email = "a989977@naver.com";
         String code = "ABC123456";
-        user.setIs_email_verified(true);
+        user.set_email_verified(true);
         when(userRepository.findByEmail(email)).thenReturn(Optional.of(user));
 
         // when & then
