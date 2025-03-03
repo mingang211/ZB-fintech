@@ -1,4 +1,4 @@
-package com.zerobase.cms.zbfintech;
+package com.zerobase.zbfintech;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
