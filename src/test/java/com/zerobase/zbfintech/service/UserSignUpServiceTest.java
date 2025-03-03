@@ -64,7 +64,7 @@ class UserSignUpServiceTest {
 
         // then
         assertEquals("회원 가입에 성공했습니다.", result);
-        verify(emailService, times(1)).sendEmail(anyString(), anyString(), anyString());
+        verify(emailService, times(1)).sendEmail(anyString(), anyString());
         verify(userRepository, times(1)).save(any(User.class));
         verify(userRepository, times(1)).findById(user.getId());
     }

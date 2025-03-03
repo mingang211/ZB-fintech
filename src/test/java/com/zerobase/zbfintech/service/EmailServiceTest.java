@@ -28,14 +28,13 @@ public class EmailServiceTest {
     void testSendEmail() {
         // given
         String to = "recipient@example.com";
-        String subject = "Test Subject";
         String text = "Test Email Body";
 
         // mock mailSender.send() 호출
         doNothing().when(mailSender).send(any(SimpleMailMessage.class));
 
         // when
-        emailService.sendEmail(to, subject, text);
+        emailService.sendEmail(to, text);
 
         // then
         // mailSender.send()가 호출되었는지 확인

@@ -10,15 +10,18 @@ public class EmailService {
 
     private final JavaMailSender mailSender;
 
+    private static final String FROM_EMAIL = "mingang25@gmail.com";
+    private static final String SUBJECT = "Verification Email!";
+
     public EmailService(JavaMailSender mailSender) {
         this.mailSender = mailSender;
     }
 
-    public void sendEmail(String to, String subject, String text) {
+    public void sendEmail(String to,String text) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("mingang25@gmail.com");
+        message.setFrom(FROM_EMAIL);
         message.setTo(to);
-        message.setSubject(subject);
+        message.setSubject(SUBJECT);
         message.setText(text);
         mailSender.send(message);
     }
