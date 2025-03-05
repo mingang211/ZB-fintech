@@ -1,5 +1,7 @@
 package com.zerobase.zbfintech.util;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -7,9 +9,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 public class Aes256Util {
+
+
     public static String alg = "AES/CBC/PKCS5Padding";
-    private static final String KEY = "ZEROBASEFINTECHK";
-    private static final String IV = KEY.substring(0, 16);
+    @Value("${aes.key}")
+    private static String KEY;
+
+    @Value("${aes.iv}")
+    private static String IV;
 
     public static String encrypt(String text) {
         try {

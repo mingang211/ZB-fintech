@@ -1,4 +1,4 @@
-package com.zerobase.zbfintech.config;
+package com.zerobase.zbfintech.auth;
 
 public enum UserType {
     USER, ADMIN
