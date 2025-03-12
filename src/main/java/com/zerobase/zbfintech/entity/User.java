@@ -26,14 +26,14 @@ public class User extends BaseEntity {
 
     private LocalDateTime verifyExpiredAt;
     private String verificationCode;
-    private boolean is_email_verified;
+    private boolean isEmailVerified;
 
     public static User from(SignupForm form){
         return User.builder()
                 .username(form.getUsername())
                 .email(form.getEmail().toLowerCase(Locale.ROOT))
                 .password(form.getPassword())
-                .is_email_verified(false)
+                .isEmailVerified(false)
                 .build();
     }
 }

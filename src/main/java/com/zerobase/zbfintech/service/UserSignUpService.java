@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Locale;
-import java.util.Optional;
 
 import static com.zerobase.zbfintech.exception.ErrorCode.*;
 
@@ -77,14 +76,14 @@ public class UserSignUpService {
         User user = userRepository.findByEmail(email).orElseThrow(
                 () -> new CustomException(NOT_FOUND_USER)
         );
-        if(user.is_email_verified()) {
+        if(user.isEmailVerified()) {
             throw new CustomException(ALREADY_VERIFY);
         } else if(!user.getVerificationCode().equals(code)) {
             throw new CustomException(WRONG_VERIFICATION);
         } else if(user.getVerifyExpiredAt().isBefore(LocalDateTime.now())) {
             throw new CustomException(EXPIRE_CODE);
         }
-        user.set_email_verified(true);
+        user.setEmailVerified(true);
     }
 
 }
