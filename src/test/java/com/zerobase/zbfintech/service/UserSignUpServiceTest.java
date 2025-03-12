@@ -42,7 +42,7 @@ class UserSignUpServiceTest {
                 .id(1L)
                 .email("a989977@naver.com")
                 .username("username")
-                .is_email_verified(false)
+                .isEmailVerified(false)
                 .build();
     }
 
@@ -97,7 +97,7 @@ class UserSignUpServiceTest {
         userSignUpService.verifyEmail(email, code);
 
         // then
-        assertTrue(user.is_email_verified());
+        assertTrue(user.isEmailVerified());
         verify(userRepository, times(1)).findByEmail(email);
     }
 
@@ -106,7 +106,7 @@ class UserSignUpServiceTest {
         // given
         String email = "a989977@naver.com";
         String code = "ABC123456";
-        user.set_email_verified(true);
+        user.setEmailVerified(true);
         when(userRepository.findByEmail(email)).thenReturn(Optional.of(user));
 
         // when & then

@@ -3,10 +3,12 @@ package com.zerobase.zbfintech.auth;
 import com.zerobase.zbfintech.entity.UserVo;
 import com.zerobase.zbfintech.util.Aes256Util;
 import io.jsonwebtoken.*;
+import jakarta.servlet.ServletException;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Date;
 import java.util.Objects;
+import java.util.Optional;
 
 
 public class JwtAuthenticationProvider {
@@ -41,5 +43,13 @@ public class JwtAuthenticationProvider {
     public UserVo getUserVo(String token) {
         Claims c = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
         return new UserVo(Long.valueOf(Objects.requireNonNull(Aes256Util.decrypt(c.getId()))), Aes256Util.decrypt(c.getSubject()));
+    }
+
+
+    public Optional<UserVo> getValidatedUserVo(String token) throws ServletException {
+        if (!validateToken(token)) {
+            throw new ServletException("Invalid Access");
+        }
+        return Optional.ofNullable(getUserVo(token));
     }
 }

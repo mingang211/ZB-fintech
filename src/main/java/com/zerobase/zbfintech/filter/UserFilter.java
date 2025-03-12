@@ -27,14 +27,10 @@ public class UserFilter implements Filter {
         if (token == null || token.isEmpty()) {
             throw new ServletException("Authorization token is missing");
         }
-
-        if(!jwtAuthenticationProvider.validateToken(token)){
-            throw new ServletException("Invalid Access");
-        }
-        UserVo vo = jwtAuthenticationProvider.getUserVo(token);
-        userService.findByIdAndEmail(vo.getId(), vo.getEmail()).orElseThrow(
-                () -> new ServletException("Invalid Access")
-        );
+        UserVo vo = jwtAuthenticationProvider.getValidatedUserVo(token)
+                        .orElseThrow(() -> new ServletException("Invalid Access"));
+        userService.findByIdAndEmail(vo.getId(), vo.getEmail())
+                .orElseThrow(() -> new ServletException("Invalid Access"));
         chain.doFilter(request, response);
     }
 }
