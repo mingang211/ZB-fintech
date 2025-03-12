@@ -1,6 +1,8 @@
 package com.zerobase.zbfintech.util;
 
 import com.zerobase.zbfintech.config.Aes256Config;
+import com.zerobase.zbfintech.exception.CustomException;
+import com.zerobase.zbfintech.exception.ErrorCode;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.stereotype.Component;
 
@@ -30,8 +32,7 @@ public class Aes256Util {
             byte[] encrypted = cipher.doFinal(text.getBytes(StandardCharsets.UTF_8));
             return Base64.encodeBase64String(encrypted);
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw new CustomException(ErrorCode.AES_ENCRYPTION_ERROR);
         }
     }
 
@@ -47,8 +48,7 @@ public class Aes256Util {
             byte[] decrypted = cipher.doFinal(decodeBytes);
             return new String(decrypted, StandardCharsets.UTF_8);
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw new CustomException(ErrorCode.AES_DECRYPTION_ERROR);
         }
     }
 }

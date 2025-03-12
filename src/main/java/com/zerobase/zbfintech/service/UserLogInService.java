@@ -31,7 +31,7 @@ public class UserLogInService {
     public Optional<User> findValidUser(String email, String password) {
         return userRepository.findByEmail(email).stream()
                 .filter(user -> user.getPassword().equals(password)
-                && user.is_email_verified())
+                && user.isEmailVerified())
                 .findFirst();
     }
 
