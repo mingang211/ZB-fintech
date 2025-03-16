@@ -52,7 +52,7 @@ class UserSignUpControllerTest {
         // given
         SignupForm form = SignupForm.builder()
                 .email("a989977@naver.com")
-                .password("password")
+                .password("passworD#")
                 .username("username")
                 .build();
 
@@ -74,9 +74,9 @@ class UserSignUpControllerTest {
         // given
         User user = User.builder()
                 .email("a989977@naver.com")
-                .password("password")
+                .password("passworD#")
                 .username("username")
-                .is_email_verified(false)
+                .isEmailVerified(false)
                 .verificationCode("HTuSwIxx02")
                 .verifyExpiredAt(LocalDateTime.now().plusMinutes(10))
                 .build();
